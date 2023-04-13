@@ -1,1 +1,1 @@
-export { Styling as default } from "./Styling";
+export * from "./Styling";

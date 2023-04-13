@@ -19,8 +19,12 @@
     "sourceMap": false,
     "paths": {
       "@assets": ["./assets"],
-      "@styling": ["./styling/index.ts"],
-      "@base-components": ["./base-components"]
+      "@styling": ["./styling"],
+      "@base-components": ["./base-components"],
+      "@components": ["./components"],
+      "@types": ["./types"],
+      "@hooks": ["./hooks"],
+      "@utils": ["./utils"]
     }
   },
   "include": ["src"],

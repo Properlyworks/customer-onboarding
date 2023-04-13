@@ -8,20 +8,20 @@ import './Header.css';
 const useStyles = makeStyles()(theme => ({
     header: {
         width: "100%",
-        height: "70px",
+        height: 80,
         backgroundColor: theme.palette.primary.dark,
         display: "flex",
         flexDirection: "row",
-        position: "absolute",
         alignItems: "center"
     },
     img: {
-        width: "330px",
-        height: "46px",
+        width: 330,
+        height: 46,
         marginLeft: theme.spacing(2)
     },
     button: {
         marginLeft: "auto",
+        marginRight: theme.spacing(4)
     }
 }));
 
@@ -31,7 +31,7 @@ export const Header: React.FC = () => {
         <header className={classes.header}>
             <img className={classes.img } src={logo}></img>
             <Button className={classes.button}
-                isLink={false} text="Visit Properly Works"
+                isLink={true} text="Visit Properly Works"
                 href="https://properlyworks.com/">
             </Button>
         </header>

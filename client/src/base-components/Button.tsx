@@ -11,19 +11,33 @@ export type ButtonProps = BoxProps & {
 }
 
 const useStyles = makeStyles()(theme => ({
-    box: {
-        marginRight: theme.spacing(4),
-        backgroundColor: theme.palette.primary.main,
-        borderRadius: "56px",
+    container: {
         alignItems: "center",
-        textAlign: "center"
+        textAlign: "center",
+        display: 'flex'
+    },
+    button: {
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: 56,
+        alignItems: "center",
+        textAlign: "center",
+        cursor: "pointer"
     },
     text: {
         padding: theme.spacing(0,2.5),
         color: theme.palette.common.white,
-        lineHeight: "1",
-        fontSize: "12px"
-    }
+        lineHeight: 1,
+        fontSize: 14,
+        fontWeight: 600
+    },
+    linkContainer: {
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: 56
+    },
+    link: {
+        margin: theme.spacing(2),
+        padding: theme.spacing(2),
+    },
 }));
 
 export const Button: React.FC<ButtonProps> = ({
@@ -34,11 +48,15 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
     const { classes,cx } = useStyles();
     return (
-        <Box className={cx(classes.box,props.className)}>
+        <Box className={cx(classes.container,props.className)}>
             <ConditionalRenderer fallbackComponent={() =>
-                <p className={classes.text}>{text}</p>
+                <button className={classes.button}><p className={classes.text}>{text}</p></button>
             } condition={isLink}>
-                <a className={classes.text}>{text}</a>
+                <Box className={classes.linkContainer}>
+                    <a href={href}>
+                        <p className={classes.text}>{text}</p>
+                    </a>
+                </Box>
             </ConditionalRenderer>
         </Box>
   )

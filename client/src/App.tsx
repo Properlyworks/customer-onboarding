@@ -1,12 +1,15 @@
 import './App.css';
-import { Header } from './components/Header/Header';
-import Styling from './components/Styling';
+import { Header, Title, Styling } from '@components';
+import { Layout } from '@components';
+import { StepContainer } from '@components';
 export const App: React.FC = () => {
-
   return (
     <div>
       <Styling>
-        <Header></Header>
+        <Layout>
+          <Title />
+          <StepContainer />
+        </Layout>
       </Styling>
     </div>
   )
