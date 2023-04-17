@@ -2,7 +2,7 @@
 import React from "react";
 import { makeStyles } from "@styling";
 import { Button } from "@base-components";
-import logo from "@assets";
+import {logo} from "@assets";
 import './Header.css';
 
 const useStyles = makeStyles()(theme => ({

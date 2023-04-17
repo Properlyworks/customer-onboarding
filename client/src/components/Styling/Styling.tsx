@@ -1,9 +1,7 @@
 import React from 'react';
 import {createCache,CacheProvider,createTheme,CssBaseline,ThemeProvider,TssCacheProvider} from "@styling"
+import { ChildrenProps } from '@types';
 
-export type ChildrenProps = {
-    children: React.ReactNode
-}
 export const muicache = createCache({
     key: 'mui',
     prepend: true
