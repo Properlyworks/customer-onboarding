@@ -25,6 +25,16 @@ const theme = createTheme({
             secondary: "#6F6C90"
         }
         
+    },
+    breakpoints: {
+        keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+        values: {
+            xs: 0,
+            sm: 320,
+            md: 540,
+            lg: 768,
+            xl: 900
+        }
     }
 })
 

@@ -3,7 +3,7 @@ import React from 'react';
 
 const useStyles = makeStyles()(() => ({
   afterHeader: {
-    minHeight: '100vh',
+    minHeight: 'calc(100vh - 240px)',
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',

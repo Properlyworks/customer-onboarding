@@ -5,6 +5,7 @@ import {ScrollToElement} from '@base-components';
 import {Header} from '@components';
 import { PageLayoutWrapper } from './PageLayoutWrapper';
 import { useScroll } from '@hooks';
+import { Footer } from '@components';
 
 const useStyles = makeStyles()(theme => ({
   content: {
@@ -43,6 +44,7 @@ export const Layout: React.FC<ChildrenProps> = ({children}) => {
           <div ref={footerScroll.ref} id='footer'>
           </div>
         </PageLayoutWrapper>
+        <Footer />
     </ResponsiveContainerMinWidth>
   );
 };

@@ -2,65 +2,74 @@ import { Box } from '@mui/material';
 import { makeStyles } from '@styling';
 import { StepContainer,ContactDetails, Budget, Review, Preference} from '@components';
 import produce from 'immer';
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useRef } from 'react'
 import { FormStateContext } from '@context'
+import { Button, ConditionalRenderer } from '@base-components';
+import { FORM_STEPS } from '@constants';
 
 export const MutiStepFormComponent: React.FC = () => {
 
     const useStyles = makeStyles()(theme => ({
         container: {
             borderRadius: 25,
-            alignItems: "center",
-            textAlign: "center",
             minHeight: theme.spacing(70),
-            maxWidth: theme.spacing(95),
-            width: `calc(100% - ${theme.spacing(4)})`,
+            maxWidth: "fit-content",
             border: `1px solid ${theme.palette.grey[200]}`,
             boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
             margin: theme.spacing(3),
-            padding: theme.spacing(2,4)
+            marginBottom: theme.spacing(2),
+            padding: theme.spacing(2, 4)
         },
+        buttonContainer: {
+            display: 'flex',
+            margin: theme.spacing(3),
+            "& > div > button > p": {
+                padding: theme.spacing(0.5, 5),
+                fontSize: theme.spacing(2),
+            }
+        },
+        nextButton: {
+            marginLeft: "auto"
+        }
     }
     ));
     
     const { form, setForm } = useContext(FormStateContext);
 
-    const next = useCallback(() => {
-        setForm(
-        produce((form) => {
-            form.selectedIndex += 1;
-        })
-        );
-    }, [setForm]);
+    const formRefs = { 0: useRef(null)};
 
     const prev = useCallback(() => {
         setForm(
-        produce((form) => {
-            form.selectedIndex -= 1;
-        })
+            produce((form) => {
+                form.selectedIndex -= 1;
+            })
         );
     }, [setForm]);
 
-    const setSelectedIndex = useCallback(
-        (index: number) => {
-        setForm(
-            produce((form) => {
-            form.selectedIndex = index;
-            })
-        );
-        },
-        [setForm]
-    );
-
     const selectedIndex = form.selectedIndex;
+    
+    const next = useCallback(() => {
+        formRefs && formRefs[selectedIndex]?.current?.click();
+    }, []);
+
     const { classes } = useStyles();
     return (
-        <Box className={classes.container}>
-            <StepContainer />
-            {selectedIndex == 0 && <ContactDetails />}
-            {selectedIndex == 1 && <Preference />}
-            {selectedIndex == 2 && <Budget />}
-            {selectedIndex == 3 && <Review/>}
+        <Box>
+            <Box className={classes.container}>
+                <StepContainer />
+                {selectedIndex == 0 && <ContactDetails submitRef={formRefs[0]} />}
+                {selectedIndex == 1 && <Preference />}
+                {selectedIndex == 2 && <Budget />}
+                {selectedIndex == 3 && <Review/>}
+            </Box>
+            <Box className={classes.buttonContainer}>
+                <ConditionalRenderer condition={selectedIndex > 0}>
+                    <Button onClick={ prev} isSecondary text="Previous"></Button>
+                </ConditionalRenderer>
+                <ConditionalRenderer condition={selectedIndex < FORM_STEPS.length - 1}>
+                    <Button onClick={ next} className={classes.nextButton} text="Next"> </Button>
+                </ConditionalRenderer>
+            </Box>
         </Box>
     )
 }

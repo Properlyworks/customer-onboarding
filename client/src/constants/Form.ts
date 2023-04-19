@@ -1,7 +1,7 @@
 export const FORM_STATE = {
     selectedIndex: 0,
     steps: {
-        details: {
+        contactDetails: {
             valid: false,
             dirty: false,
             value: {

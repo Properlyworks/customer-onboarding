@@ -8,7 +8,7 @@ import './Header.css';
 const useStyles = makeStyles()(theme => ({
     header: {
         width: "100%",
-        height: 80,
+        height: 100,
         backgroundColor: theme.palette.primary.dark,
         display: "flex",
         flexDirection: "row",

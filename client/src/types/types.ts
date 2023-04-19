@@ -1,3 +1,5 @@
+import { FORM_STATE } from "@constants";
+
 export declare type ChildrenProps = {
     children: React.ReactNode;
 };
@@ -11,4 +13,18 @@ export type ResponsiveContainerProps = ChildrenProps &
     isFixed?: boolean;
     maxWidth?: Breakpoints | false;
     useGutter?: boolean;
-  };
+};
+export type FormBaseProps = {
+    className?: string,
+    defaultValue?: boolean | string | readonly string[] | number;
+    label?: string;
+    labelComponent?: React.FC;
+    name: string;
+    onChange?: (value: unknown) => void;
+    shouldUnregister?: boolean;
+    required?: boolean;
+    wrapper?: React.JSXElementConstructor<{ children: React.ReactElement }>;
+};
+
+export declare type ContactDetailsKeys = keyof typeof FORM_STATE.steps.contactDetails.value
+export declare type ContactDetails = typeof FORM_STATE.steps.contactDetails.value
