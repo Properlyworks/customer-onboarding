@@ -6,6 +6,7 @@ import React, { useCallback, useContext, useRef } from 'react'
 import { FormStateContext } from '@context'
 import { Button, ConditionalRenderer } from '@base-components';
 import { FORM_STEPS } from '@constants';
+import { fireClick } from '@utils';
 
 export const MutiStepFormComponent: React.FC = () => {
 
@@ -18,7 +19,10 @@ export const MutiStepFormComponent: React.FC = () => {
             boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
             margin: theme.spacing(3),
             marginBottom: theme.spacing(2),
-            padding: theme.spacing(2, 4)
+            padding: theme.spacing(2, 4),
+            [theme.breakpoints.up('lg')]: {
+                maxWidth: theme.spacing(100),
+            }
         },
         buttonContainer: {
             display: 'flex',
@@ -36,7 +40,7 @@ export const MutiStepFormComponent: React.FC = () => {
     
     const { form, setForm } = useContext(FormStateContext);
 
-    const formRefs = { 0: useRef(null)};
+    const formRefs = {[FORM_STEPS[0].label] : useRef(null), [FORM_STEPS[0].label]: useRef(null)};
 
     const prev = useCallback(() => {
         setForm(
@@ -48,9 +52,7 @@ export const MutiStepFormComponent: React.FC = () => {
 
     const selectedIndex = form.selectedIndex;
     
-    const next = useCallback(() => {
-        formRefs && formRefs[selectedIndex]?.current?.click();
-    }, []);
+    const next = () => fireClick(formRefs[FORM_STEPS[selectedIndex]?.label]?.current) 
 
     const { classes } = useStyles();
     return (

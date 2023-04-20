@@ -8,6 +8,9 @@ import produce from 'immer';
 import React, { useContext, useEffect } from 'react'
 import { useForm, useFormState } from 'react-hook-form';
 
+const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const phoneRegex = /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
+
 const useStyles = makeStyles()(theme => {
   const shared = {
     display: "flex",
@@ -52,14 +55,15 @@ const useStyles = makeStyles()(theme => {
 export const ContactDetails: React.FC<{ submitRef: React.MutableRefObject<null> }> = ({submitRef}) => {
 const { form, setForm } = useContext(FormStateContext);
 
-const formReturn = useForm({
-    shouldUseNativeValidation: true,
+  const formReturn = useForm({
+    mode: 'onBlur',
     defaultValues: form.steps.contactDetails.value,
-});
+  });
   
-const { isDirty } = useFormState({
-    control: formReturn.control
-});
+  const {formState: {errors}, clearErrors} = formReturn
+  const { isDirty } = useFormState({
+      control: formReturn.control
+  });
   
   
 useEffect(() => {
@@ -85,7 +89,7 @@ const onSubmit = (value: ContactDetailsType) => {
 }
   
 const onChange = (value: string, name: ContactDetailsKeys) => {
-  formReturn.trigger(name)
+  clearErrors(name);
   setForm(
     produce((formState) => {
       formState.steps.contactDetails.value[name] = value;
@@ -105,15 +109,15 @@ const { classes } = useStyles();
           <span>Please provide your contact details.</span>
         </Box>
         <Box className={classes.inputGroup}>
-          <FormInput required icon={personImage} label="Name" onChange={(value: string) => onChange(value, "name")}
+          <FormInput required={"Name is required"} icon={personImage} label="Name" onChange={(value: string) => onChange(value, "name")}
             name="name" form={formReturn} placeHolder="John Doe" />
-          <FormInput required icon={phoneImage} label="Phone" onChange={(value: string) => onChange(value, "phone")}
-            name="phone" form={formReturn} placeHolder="(123) 456 7890" />
-          <FormInput required icon={emailImage} label="Email" onChange={(value: string) => onChange(value, "email")}
-            name="email" form={formReturn} placeHolder="abc@org.com" />
+          <FormInput required={"Phone is required"} icon={phoneImage} label="Phone" onChange={(value: string) => onChange(value, "phone")}
+            name="phone" pattern={{value :phoneRegex, message: "Please enter valid phone number"}} form={formReturn} placeHolder="(123) 456 7890" />
+          <FormInput required={"Email is required"} icon={emailImage} label="Email" onChange={(value: string) => onChange(value, "email")}
+            name="email" pattern={{value :emailRegex, message: "Please enter valid email"}} form={formReturn} placeHolder="abc@org.com" />
         </Box>
         <Box className={classes.companyGroup}>
-          <FormInput required icon={companyImage} label="Company" onChange={(value: string) => onChange(value, "company")}
+          <FormInput required={"Company name is required"} icon={companyImage} label="Company" onChange={(value: string) => onChange(value, "company")}
             name="company" form={formReturn} placeHolder="Company name" />
           <FormInput icon={compnayTypeImage} label="Company type" onChange={(value: string) => onChange(value, "companyType")}
             name="companyType" form={formReturn} placeHolder="Company type" />

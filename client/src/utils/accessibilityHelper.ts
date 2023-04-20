@@ -32,6 +32,12 @@ export type FocusOptions = {
   shouldOnlyIncludeVisible?: boolean;
 };
 
+export const fireClick = (node: any) => {
+  if (node && typeof node.onclick == 'function') {
+        node.onclick(); 
+  }
+}
+
 export const setFocus = (element: HTMLElement | undefined, options?: FocusOptions) => {
   const {
     shouldFocusSelf = true,

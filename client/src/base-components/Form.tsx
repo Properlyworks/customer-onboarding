@@ -22,7 +22,6 @@ export const Form = <T extends FieldValues>({
     onSubmit,
     form,
 }: FormProps<T>) => {
-    const { handleSubmit } = form;
     return (<FormProvider {...(form as UseFormReturn<T>)}>
         <form onSubmit={formSubmit(onSubmit,form)}>
             {children}

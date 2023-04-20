@@ -38,15 +38,15 @@ export const FORM_STATE = {
 
 export const FORM_STEPS = [
   {
-    label: `Contact Details`,
+    label: `contact-details`,
   },
   {
-    label: `What are you looking for`,
+    label: `preferences`,
   },
   {
-    label: `Budget`,
+    label: `budget`,
     },
   {
-    label: `Review`,
+    label: `review`,
   },
 ];
