@@ -19,6 +19,7 @@ export const FORM_STATE = {
             value: {
                 needConsulting: '',
                 preferredMedium: '',
+                categories: [] as string[]
             },
         },
         budget: {

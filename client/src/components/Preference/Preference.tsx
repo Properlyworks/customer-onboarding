@@ -1,4 +1,4 @@
-import { ConditionalRenderer, Form, FormRadio } from '@base-components';
+import { ConditionalRenderer, Form, FormRadio, MultiSelectCheckbox } from '@base-components';
 import { FormStateContext } from '@context';
 import { Box } from '@mui/material';
 import { makeStyles } from '@styling';
@@ -6,6 +6,39 @@ import produce from 'immer';
 import React, { useContext, useEffect } from 'react'
 import { useForm, useFormState } from 'react-hook-form';
 import { Preferences as PreferencesType, PreferencesKeys } from '@types';
+
+const yesNo = ['Yes', 'No'];
+const preferredMedium = ['Phone', 'Email', 'On-site visit'];
+const categories = [
+  {
+    label: "Automate General Manufacturing (Material Handling)",
+    value: "AGM"
+  },
+  {
+    label: "Automate Fabrication Processes (Welding/Grinding/Etc)",
+    value: "AFP"
+  },
+  {
+    label: "Automate Inspection Processes (Sorting, Validating)",
+    value: "AIP"
+  },
+  {
+    label: "Manufacturing Engineering Support (Fixtures, Jogs, Process Improvement)",
+    value: "MES"
+  },
+  {
+    label: "Product Design Support (Enhancement, Performance, Features, Quality)",
+    value: "PDS"
+  },
+  {
+    label: "Project Preparation and Planning (Scheduling/Budgeting)",
+    value: "PPP"
+  },
+  {
+    label: "Project Scoping",
+    value: "PS"
+  },
+]
 
 const useStyles = makeStyles()(theme => {
   const shared = {
@@ -53,7 +86,7 @@ const onSubmit = (value: PreferencesType) => {
   );
 }
   
-const onChange = (value: string, name: PreferencesKeys) => {
+const onChange = (value: string | string[], name: PreferencesKeys) => {
   clearErrors(name);
   setForm(
     produce((formState) => {
@@ -61,10 +94,6 @@ const onChange = (value: string, name: PreferencesKeys) => {
     })
   );
 }
-
-  const yesNo = ['Yes', 'No']
-
-  const preferredMedium = ['Phone', 'Email', 'On-site visit']
 
   const { classes } = useStyles();
   
@@ -78,9 +107,13 @@ const onChange = (value: string, name: PreferencesKeys) => {
         <Box>
           <FormRadio required={"Field is required"} label="Do you need consulting?" options={yesNo} onChange={(value: string) => onChange(value, "needConsulting")}
             name="needConsulting" form={formReturn} defaultValue={form.steps.preferences.value.needConsulting} />
-            <ConditionalRenderer condition={form.steps.preferences.value.needConsulting == yesNo[0]}>
+          <ConditionalRenderer condition={form.steps.preferences.value.needConsulting == yesNo[0]}>
               <FormRadio required={"Field is required"} label="Preferred Medium?" options={preferredMedium} onChange={(value: string) => onChange(value, "preferredMedium")}
               name="preferredMedium" form={formReturn} defaultValue={form.steps.preferences.value.preferredMedium} />
+          </ConditionalRenderer>
+          <ConditionalRenderer condition={form.steps.preferences.value.needConsulting == yesNo[1]}>
+            <MultiSelectCheckbox required={"Field is required"} label="Need help with optimizing manufacturing operations?" options={categories} onChange={(value: string[]) => onChange(value, "categories")}
+              name="categories" form={formReturn} defaultValue={form.steps.preferences.value.categories} />
             </ConditionalRenderer>
         </Box>
       </Box>
