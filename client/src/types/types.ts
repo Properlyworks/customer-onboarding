@@ -28,3 +28,5 @@ export type FormBaseProps = {
 
 export declare type ContactDetailsKeys = keyof typeof FORM_STATE.steps.contactDetails.value
 export declare type ContactDetails = typeof FORM_STATE.steps.contactDetails.value
+export declare type PreferencesKeys = keyof typeof FORM_STATE.steps.preferences.value
+export declare type Preferences = typeof FORM_STATE.steps.preferences.value

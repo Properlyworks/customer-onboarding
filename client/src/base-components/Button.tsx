@@ -40,16 +40,10 @@ const useStyles = makeStyles()((theme) => ({
         color: theme.palette.primary.main,
         fontWeight: 400,
     },
-    linkContainer: {
+    link: {
         backgroundColor: theme.palette.primary.main,
         borderRadius: 56,
-        "& > a": {
-            textDecoration: "none",
-        }
-    },
-    link: {
-        margin: theme.spacing(2),
-        padding: theme.spacing(5),
+        textDecoration: "none",
     },
 }));
 
@@ -72,11 +66,9 @@ export const Button: React.FC<ButtonProps> = ({
                     <p className={textClass}>{text}</p>
                 </button>
             } condition={isLink}>
-                <Box className={classes.linkContainer}>
-                    <a href={href}>
+                    <a className={classes.link} href={href}>
                         <p className={textClass}>{text}</p>
                     </a>
-                </Box>
             </ConditionalRenderer>
         </Box>
   )

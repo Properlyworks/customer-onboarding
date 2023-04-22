@@ -21,7 +21,7 @@ export const MutiStepFormComponent: React.FC = () => {
             marginBottom: theme.spacing(2),
             padding: theme.spacing(2, 4),
             [theme.breakpoints.up('lg')]: {
-                maxWidth: theme.spacing(100),
+                maxWidth: theme.spacing(125),
             }
         },
         buttonContainer: {
@@ -40,7 +40,7 @@ export const MutiStepFormComponent: React.FC = () => {
     
     const { form, setForm } = useContext(FormStateContext);
 
-    const formRefs = {[FORM_STEPS[0].label] : useRef(null), [FORM_STEPS[0].label]: useRef(null)};
+    const formRefs = {[FORM_STEPS[0].label] : useRef(null), [FORM_STEPS[1].label]: useRef(null)};
 
     const prev = useCallback(() => {
         setForm(
@@ -59,8 +59,8 @@ export const MutiStepFormComponent: React.FC = () => {
         <Box>
             <Box className={classes.container}>
                 <StepContainer />
-                {selectedIndex == 0 && <ContactDetails submitRef={formRefs[0]} />}
-                {selectedIndex == 1 && <Preference />}
+                {selectedIndex == 0 && <ContactDetails submitRef={formRefs[FORM_STEPS[0].label]} />}
+                {selectedIndex == 1 && <Preference submitRef={formRefs[FORM_STEPS[1].label]}/>}
                 {selectedIndex == 2 && <Budget />}
                 {selectedIndex == 3 && <Review/>}
             </Box>

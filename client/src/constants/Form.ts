@@ -19,7 +19,6 @@ export const FORM_STATE = {
             value: {
                 needConsulting: '',
                 preferredMedium: '',
-                categories: []
             },
         },
         budget: {

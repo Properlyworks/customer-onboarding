@@ -51,6 +51,8 @@ const useStyles = makeStyles()(theme => ({
         display: 'flex',
         padding: theme.spacing(1,2),
         color: 'indianred',
+        fontSize: 14,
+        whiteSpace: 'nowrap',
     }
 
     }

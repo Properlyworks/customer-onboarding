@@ -33,8 +33,8 @@ export type FocusOptions = {
 };
 
 export const fireClick = (node: any) => {
-  if (node && typeof node.onclick == 'function') {
-        node.onclick(); 
+  if (node && typeof node.click == 'function') {
+        node.click(); 
   }
 }
 

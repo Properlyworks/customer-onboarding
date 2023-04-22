@@ -1,5 +1,5 @@
 import { companyImage, compnayTypeImage, designationImage, emailImage, personImage, phoneImage } from '@assets';
-import { Button, Form, FormInput} from '@base-components';
+import { Form, FormInput} from '@base-components';
 import { FormStateContext } from '@context';
 import { Box } from '@mui/material';
 import { makeStyles } from '@styling';
