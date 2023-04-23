@@ -35,6 +35,8 @@ export declare type ContactDetailsKeys = keyof typeof FORM_STATE.steps.contactDe
 export declare type ContactDetails = typeof FORM_STATE.steps.contactDetails.value
 export declare type PreferencesKeys = keyof typeof FORM_STATE.steps.preferences.value
 export declare type Preferences = typeof FORM_STATE.steps.preferences.value
+export declare type BugetKeys = keyof typeof FORM_STATE.steps.budget.value
+export declare type Budget = typeof FORM_STATE.steps.budget.value
 
 export declare type ValidationRules = {
     required: string | boolean
@@ -43,8 +45,17 @@ export declare type ValidationRules = {
 export declare type Question = {
     id: string;
     type: string;
-    label: string;
+    question: string;
     value: string;
     options?: string[];
     rules?: ValidationRules;
+}
+
+const questions = {
+    "basequestions" : {
+
+    },
+    "AFH" : {
+
+    }
 }

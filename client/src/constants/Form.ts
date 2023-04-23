@@ -83,3 +83,47 @@ export const CATEGORIES = [
     value: "PS"
   },
 ]
+
+export const BUDGET = ["$5,000 - $10,000", "$10,000 - $20,000", "$20,000 - $50,000", "$50,000 +"]
+
+export const BASE_QUESTIONS = [
+  {
+  id: "question1",
+  type: "select",
+  question: "Knowledge about automation?",
+  value: "",
+  options: ["Novice", "Knowledgable", "Expert"],
+  rules: {
+    required: "Field is required"
+  },
+},
+  {
+  id: "question2",
+  type: "select",
+  question: "Is your process ready for automation?",
+  value: "",
+  options: ["Yes", "No"],
+  },
+  {
+  id: "question3",
+  type: "select",
+  question: "Knowledge about automation?",
+  value: "",
+  options: ["Complex", "Simple"],
+  },
+  {
+  id: "question4",
+  type: "input",
+  question: "What are your biggest pain points?",
+  value: "",
+  rules: {
+    required: "Field is required"
+  }
+  },
+  {
+  id: "question2",
+  type: "select",
+  question: "Biggest bottlenecks in your process?",
+  value: "",
+  },
+]
