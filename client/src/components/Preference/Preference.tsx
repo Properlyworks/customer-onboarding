@@ -69,7 +69,6 @@ export const Preference: React.FC<{
         formState.selectedIndex += 1;
       })
     );
-    console.log(form.steps.preferences);
   };
 
   const onChange = (value: string | string[], name: PreferencesKeys) => {

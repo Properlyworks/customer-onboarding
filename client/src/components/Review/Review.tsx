@@ -43,7 +43,25 @@ const useStyles = makeStyles()((theme) => {
 export const Review: React.FC = () => {
   const { classes } = useStyles();
   const { form, setForm } = useContext(FormStateContext);
-  const submit = () => {
+  interface FetchData {
+    url: string;
+    options?: RequestInit;
+  }
+
+  const ERROR_MSG = "Oops! Something went wrong 🤷‍♂️";
+
+  const fetchData = async function ({ url, options }: FetchData): Promise<any> {
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      throw new Error(ERROR_MSG);
+    }
+
+    const data = await response.json();
+    return data;
+  };
+
+  const submit = async () => {
     let data = {} as Record<string, string | string[]>;
     Object.entries(form.steps).forEach(([stepName, step]) => {
       if (stepName == "questions") {
@@ -54,7 +72,21 @@ export const Review: React.FC = () => {
         data = { ...data, ...step.value };
       }
     });
-    console.log(data);
+
+    const options: RequestInit = {
+      method: "POST",
+      body: JSON.stringify({ ...data }),
+      headers: {
+        Accept: "application/json, text/plain",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+    };
+
+    // Submit and return a POST Request to the API with options
+    return await fetchData({
+      url: "http://backend-dhry.onrender.com/submit",
+      options,
+    });
   };
 
   return (

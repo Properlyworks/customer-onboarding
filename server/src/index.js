@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { config } = require("dotenv");
 const cors = require("cors");
 const Test = require("./models/Test");
-const run = require("./services/NodeMailerService");
+const { run, submit } = require("./services/NodeMailerService");
 
 config();
 const PORT = process.env.PORT || 3000;
@@ -21,7 +21,12 @@ app.get("/", (req, res) => {
 
 app.post("/sendMail", async (req, res) => {
   await run();
-  console.log("Mail sent");
+  res.json({});
+});
+
+app.post("/submit", async (req, res) => {
+  await submit(req.body);
+  res.json({});
 });
 
 app.post("/add", async (req, res) => {

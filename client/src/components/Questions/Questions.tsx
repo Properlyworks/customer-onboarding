@@ -112,7 +112,6 @@ export const Questions: React.FC<{
   }, [isDirty, setForm]);
 
   const onSubmit = (value: QuestionsType) => {
-    console.log(form.steps.questions.value);
     setForm(
       produce((formState) => {
         formState.steps.questions = {
@@ -160,7 +159,7 @@ export const Questions: React.FC<{
           {type && type == "input" && (
             <FormInput
               className={classes.eachQuestionTextInput}
-              onChange={(value: string) => onChange(value, id)}
+              onChange={(value: string) => {}}
               name={id}
               form={formReturn}
               wrapper={LargeField}
