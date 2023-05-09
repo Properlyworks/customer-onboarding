@@ -86,9 +86,9 @@ const submit = async (input) => {
     const mailOptionsToUser = {
       from: "Properly works <properlyworksdelta@gmail.com>",
       to: email,
-      subject: "Project Quote",
-      html: `<h1>Thanks for reaching out to properly works</h1> <br> 
-      <h2>We will get back to you in 24 - 48 hours</h2>`,
+      subject: "Project Quote on your way",
+      html: `<h2>Hi ${name}, Thanks for reaching out to Properly Works</h2> <br> 
+      <h3>We will get back to you in 24 - 48 hours</h3>`,
     };
 
     const mailOptionsToTeam = {

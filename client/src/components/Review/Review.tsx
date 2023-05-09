@@ -4,7 +4,7 @@ import { BASE_QUESTIONS } from "@constants";
 import { FormStateContext } from "@context";
 import { Box } from "@mui/material";
 import { makeStyles } from "@styling";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 const useStyles = makeStyles()((theme) => {
   const shared = {
@@ -48,6 +48,8 @@ export const Review: React.FC = () => {
     options?: RequestInit;
   }
 
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const ERROR_MSG = "Oops! Something went wrong 🤷‍♂️";
 
   const fetchData = async function ({ url, options }: FetchData): Promise<any> {
@@ -83,15 +85,17 @@ export const Review: React.FC = () => {
     };
 
     // Submit and return a POST Request to the API with options
-    return await fetchData({
+    await fetchData({
       url: "https://backend-dhry.onrender.com/submit",
       options,
     });
+
+    setShowSuccess(true);
   };
 
   return (
     <Box className={classes.container}>
-      <img src={submitImage} alt="review and submit" />
+      {showSuccess && <img src={submitImage} alt="review and submit" />}
       <Box className={classes.titleContainer}>
         <h2>Submit your quote request</h2>
         <span>
