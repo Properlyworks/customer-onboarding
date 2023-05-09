@@ -1,4 +1,4 @@
-import { Question } from "@types";
+import { BaseQuestionKeys, Question } from "@types";
 
 export const BASE_QUESTIONS = {
   question1: {
@@ -40,9 +40,9 @@ export const BASE_QUESTIONS = {
     question: "Biggest bottlenecks in your process?",
     value: "",
   },
-};
+} as Record<string, Question>;
 
-const mappedQuestions = {} as Record<string, string>;
+const mappedQuestions = {} as Record<BaseQuestionKeys, string>;
 Object.entries(BASE_QUESTIONS).forEach(([id, question]) => {
   const { value } = question;
   mappedQuestions[id] = value;

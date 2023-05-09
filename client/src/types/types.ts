@@ -1,4 +1,4 @@
-import { FORM_STATE } from "@constants";
+import { BASE_QUESTIONS, FORM_STATE } from "@constants";
 
 export declare type ChildrenProps = {
   children: React.ReactNode;
@@ -43,7 +43,7 @@ export declare type Budget = typeof FORM_STATE.steps.budget.value;
 export declare type QuestionsKeys =
   keyof typeof FORM_STATE.steps.questions.value;
 export declare type Questions = typeof FORM_STATE.steps.questions.value;
-
+export declare type BaseQuestionKeys = keyof typeof BASE_QUESTIONS;
 export declare type ValidationRules = {
   required: string | boolean;
 };

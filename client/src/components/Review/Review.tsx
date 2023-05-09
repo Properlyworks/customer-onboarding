@@ -47,7 +47,7 @@ export const Review: React.FC = () => {
     let data = {} as Record<string, string | string[]>;
     Object.entries(form.steps).forEach(([stepName, step]) => {
       if (stepName == "questions") {
-        Object.entries(step.value).forEach(([id, value]) => {
+        Object.entries(form.steps.questions.value).forEach(([id, value]) => {
           data[BASE_QUESTIONS[id].question] = value;
         });
       } else {
