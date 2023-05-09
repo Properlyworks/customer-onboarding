@@ -84,7 +84,7 @@ export const Review: React.FC = () => {
 
     // Submit and return a POST Request to the API with options
     return await fetchData({
-      url: "http://backend-dhry.onrender.com/submit",
+      url: "https://backend-dhry.onrender.com/submit",
       options,
     });
   };
