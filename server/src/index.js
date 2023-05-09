@@ -32,8 +32,9 @@ app.post("/add", async (req, res) => {
   res.json(createdTest);
 });
 
-mongoose.connect(process.env.MONGO_URL).then(() => {
-  app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-  });
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
+// mongoose.connect(process.env.MONGO_URL).then(() => {
+
+// });
