@@ -21,7 +21,7 @@ export const BASE_QUESTIONS = {
   question3: {
     id: "question3",
     type: "select",
-    question: "Knowledge about automation?",
+    question: "Complexity of the process?",
     value: "",
     options: ["Complex", "Simple"],
   },
