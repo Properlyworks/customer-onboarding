@@ -1,9 +1,9 @@
-import express, { Request, Response } from "express";
-import mongoose from "mongoose";
-import { config } from "dotenv";
-import cors from "cors";
-import Test from "./models/Test";
-import { run } from "./services/NodeMailerService";
+const express = require("express");
+const mongoose = require("mongoose");
+const { config } = require("dotenv");
+const cors = require("cors");
+const Test = require("./models/Test");
+const run = require("./services/NodeMailerService");
 
 config();
 const PORT = process.env.PORT || 3000;
@@ -15,16 +15,16 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
   res.send("Customer onboarding service running");
 });
 
-app.post("/sendMail", async (req: Request, res: Response) => {
+app.post("/sendMail", async (req, res) => {
   await run();
   console.log("Mail sent");
 });
 
-app.post("/add", async (req: Request, res: Response) => {
+app.post("/add", async (req, res) => {
   const newTest = new Test({
     test: req.body.test,
   });
@@ -32,7 +32,7 @@ app.post("/add", async (req: Request, res: Response) => {
   res.json(createdTest);
 });
 
-mongoose.connect(process.env.MONGO_URL!).then(() => {
+mongoose.connect(process.env.MONGO_URL).then(() => {
   app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
   });

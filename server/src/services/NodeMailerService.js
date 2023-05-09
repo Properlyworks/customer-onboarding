@@ -1,7 +1,7 @@
-import { createTransport } from "nodemailer";
+const Nodemailer = require("nodemailer");
 const Excel = require("exceljs");
 
-export const run = async () => {
+const run = async () => {
   const filename = "Debtors.xlsx";
   let workbook = new Excel.Workbook();
   let worksheet = workbook.addWorksheet("Debtors");
@@ -29,7 +29,7 @@ export const run = async () => {
     worksheet.addRow(e);
   });
   const buffer = await workbook.xlsx.writeBuffer();
-  const transporter = createTransport({
+  const transporter = Nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: "properlyworksdelta@gmail.com",
@@ -52,3 +52,5 @@ export const run = async () => {
   };
   await transporter.sendMail(mailOptions);
 };
+
+module.exports = run;
