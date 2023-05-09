@@ -1,6 +1,6 @@
 import { submitImage } from "@assets";
 import { Button } from "@base-components";
-import { BASE_QUESTIONS, mappedQuestions } from "@constants";
+import { BASE_QUESTIONS } from "@constants";
 import { FormStateContext } from "@context";
 import { Box } from "@mui/material";
 import { makeStyles } from "@styling";
