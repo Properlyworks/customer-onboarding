@@ -24,6 +24,9 @@ const useStyles = makeStyles()((theme) => {
       flexDirection: "column",
       gap: theme.spacing(2),
       padding: theme.spacing(2),
+      [theme.breakpoints.up("lg")]: {
+        minWidth: theme.spacing(70),
+      },
     },
     titleContainer: {
       ...shared,

@@ -6,3 +6,4 @@ export { default as companyImage } from "./company.png";
 export { default as designationImage } from "./designation.png";
 export { default as compnayTypeImage } from "./companyType.png";
 export { default as submitImage } from "./submit.png";
+export { default as smallLogo } from "./small-logo.png";

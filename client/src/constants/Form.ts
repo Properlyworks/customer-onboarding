@@ -1,3 +1,53 @@
+import { Question } from "@types";
+
+export const BASE_QUESTIONS = {
+  question1: {
+    id: "question1",
+    type: "select",
+    question: "Knowledge about automation?",
+    value: "",
+    options: ["Novice", "Knowledgable", "Expert"],
+    rules: {
+      required: "Field is required",
+    },
+  },
+  question2: {
+    id: "question2",
+    type: "select",
+    question: "Is your process ready for automation?",
+    value: "",
+    options: ["Yes", "No"],
+  },
+  question3: {
+    id: "question3",
+    type: "select",
+    question: "Knowledge about automation?",
+    value: "",
+    options: ["Complex", "Simple"],
+  },
+  question4: {
+    id: "question4",
+    type: "input",
+    question: "What are your biggest pain points?",
+    value: "",
+    rules: {
+      required: "Field is required",
+    },
+  },
+  question5: {
+    id: "question5",
+    type: "input",
+    question: "Biggest bottlenecks in your process?",
+    value: "",
+  },
+};
+
+const mappedQuestions = {} as Record<string, string>;
+Object.entries(BASE_QUESTIONS).forEach(([id, question]) => {
+  const { value } = question;
+  mappedQuestions[id] = value;
+});
+
 export const FORM_STATE = {
   selectedIndex: 0,
   steps: {
@@ -32,7 +82,7 @@ export const FORM_STATE = {
     questions: {
       valid: true,
       dirty: false,
-      value: {},
+      value: mappedQuestions,
     },
   },
 };
@@ -43,6 +93,9 @@ export const FORM_STEPS = [
   },
   {
     label: `preferences`,
+  },
+  {
+    label: `questions`,
   },
   {
     label: `budget`,
@@ -92,46 +145,4 @@ export const BUDGET = [
   "$10,000 - $20,000",
   "$20,000 - $50,000",
   "$50,000 +",
-];
-
-export const BASE_QUESTIONS = [
-  {
-    id: "question1",
-    type: "select",
-    question: "Knowledge about automation?",
-    value: "",
-    options: ["Novice", "Knowledgable", "Expert"],
-    rules: {
-      required: "Field is required",
-    },
-  },
-  {
-    id: "question2",
-    type: "select",
-    question: "Is your process ready for automation?",
-    value: "",
-    options: ["Yes", "No"],
-  },
-  {
-    id: "question3",
-    type: "select",
-    question: "Knowledge about automation?",
-    value: "",
-    options: ["Complex", "Simple"],
-  },
-  {
-    id: "question4",
-    type: "input",
-    question: "What are your biggest pain points?",
-    value: "",
-    rules: {
-      required: "Field is required",
-    },
-  },
-  {
-    id: "question2",
-    type: "select",
-    question: "Biggest bottlenecks in your process?",
-    value: "",
-  },
 ];

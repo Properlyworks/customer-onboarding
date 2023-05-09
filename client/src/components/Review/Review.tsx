@@ -1,5 +1,6 @@
 import { submitImage } from "@assets";
 import { Button } from "@base-components";
+import { BASE_QUESTIONS, mappedQuestions } from "@constants";
 import { FormStateContext } from "@context";
 import { Box } from "@mui/material";
 import { makeStyles } from "@styling";
@@ -43,7 +44,17 @@ export const Review: React.FC = () => {
   const { classes } = useStyles();
   const { form, setForm } = useContext(FormStateContext);
   const submit = () => {
-    console.log(form.steps);
+    let data = {} as Record<string, string | string[]>;
+    Object.entries(form.steps).forEach(([stepName, step]) => {
+      if (stepName == "questions") {
+        Object.entries(step.value).forEach(([id, value]) => {
+          data[BASE_QUESTIONS[id].question] = value;
+        });
+      } else {
+        data = { ...data, ...step.value };
+      }
+    });
+    console.log(data);
   };
 
   return (

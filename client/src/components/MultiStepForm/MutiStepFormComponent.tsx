@@ -6,6 +6,7 @@ import {
   Budget,
   Review,
   Preference,
+  Questions,
 } from "@components";
 import produce from "immer";
 import React, { useCallback, useContext, useRef } from "react";
@@ -48,6 +49,7 @@ export const MutiStepFormComponent: React.FC = () => {
     [FORM_STEPS[0].label]: useRef(null),
     [FORM_STEPS[1].label]: useRef(null),
     [FORM_STEPS[2].label]: useRef(null),
+    [FORM_STEPS[3].label]: useRef(null),
   };
 
   const prev = useCallback(() => {
@@ -75,9 +77,12 @@ export const MutiStepFormComponent: React.FC = () => {
           <Preference submitRef={formRefs[FORM_STEPS[1].label]} />
         )}
         {selectedIndex == 2 && (
-          <Budget submitRef={formRefs[FORM_STEPS[2].label]} />
+          <Questions submitRef={formRefs[FORM_STEPS[2].label]} />
         )}
-        {selectedIndex == 3 && <Review />}
+        {selectedIndex == 3 && (
+          <Budget submitRef={formRefs[FORM_STEPS[3].label]} />
+        )}
+        {selectedIndex == 4 && <Review />}
       </Box>
       <Box className={classes.buttonContainer}>
         <ConditionalRenderer condition={selectedIndex > 0}>

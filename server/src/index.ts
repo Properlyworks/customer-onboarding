@@ -1,8 +1,9 @@
-import express, {Request, Response} from "express";
+import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import { config } from "dotenv";
-import cors from 'cors';
+import cors from "cors";
 import Test from "./models/Test";
+import { run } from "./services/NodeMailerService";
 
 config();
 const PORT = process.env.PORT || 3000;
@@ -14,21 +15,25 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/", (req: Request,res: Response) => {
-    res.send("Customer onboarding service running")
-})
+app.get("/", (req: Request, res: Response) => {
+  res.send("Customer onboarding service running");
+});
+
+app.post("/sendMail", async (req: Request, res: Response) => {
+  await run();
+  console.log("Mail sent");
+});
 
 app.post("/add", async (req: Request, res: Response) => {
-    const newTest = new Test({
-        test : req.body.test
-    })
-    const createdTest = await newTest.save();
-    res.json(createdTest);
-})
-
+  const newTest = new Test({
+    test: req.body.test,
+  });
+  const createdTest = await newTest.save();
+  res.json(createdTest);
+});
 
 mongoose.connect(process.env.MONGO_URL!).then(() => {
-    app.listen(PORT, () => {
+  app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
+  });
 });
-})
