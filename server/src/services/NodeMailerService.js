@@ -32,13 +32,13 @@ const run = async () => {
   const transporter = Nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "properlyworksdelta@gmail.com",
-      pass: "pcnkllqofvayxswl",
+      user: "",
+      pass: "",
     },
   });
   const mailOptions = {
-    from: "properlyworksdelta@gmail.com",
-    to: ["sreeharshakonduru@gmail.com"],
+    from: "",
+    to: [""],
     subject: "Test",
     html: "Thanks for reaching out to properly works",
     attachments: [
@@ -73,18 +73,18 @@ const submit = async (input) => {
       worksheet.addRow(e);
     });
 
-    const mails = ["sreeharshakonduru@gmail.com", email];
+    const mails = ["", email];
     const buffer = await workbook.xlsx.writeBuffer();
     const transporter = Nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "properlyworksdelta@gmail.com",
-        pass: "pcnkllqofvayxswl",
+        user: "",
+        pass: "",
       },
     });
 
     const mailOptionsToUser = {
-      from: "Properly works <properlyworksdelta@gmail.com>",
+      from: "Properly works <>",
       to: email,
       subject: "Project Quote on your way",
       html: `<h2>Hi ${name}, Thanks for reaching out to Properly Works</h2> <br> 
@@ -92,8 +92,8 @@ const submit = async (input) => {
     };
 
     const mailOptionsToTeam = {
-      from: "Properly works <properlyworksdelta@gmail.com>",
-      to: "sreeharshakonduru@gmail.com",
+      from: "Properly works <>",
+      to: "",
       subject: "We got a lead",
       html: `Details in the attachment below.`,
       attachments: [
